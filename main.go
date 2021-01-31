@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"os"
 
+	m "github.com/ethereum/go-ethereum/common/math"
 	MQTT "github.com/theUm/paho.mqtt.golang"
 )
 
@@ -127,4 +128,7 @@ func main() {
 		client.Disconnect(250)
 		fmt.Println("Sample Subscriber Disconnected")
 	}
+
+	someint := m.HexOrDecimal64(4)
+	fmt.Println(someint)
 }
