@@ -1,6 +1,6 @@
 module mqtt-bc-test
 
-go 1.11
+go 1.10
 
 require (
 	github.com/theUm/paho.mqtt.golang v1.4.5
