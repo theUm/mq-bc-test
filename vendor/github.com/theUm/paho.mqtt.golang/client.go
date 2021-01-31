@@ -76,7 +76,7 @@ type Client interface {
 	Publish(topic string, qos byte, retained bool, payload interface{}) Token
 	// Subscribe starts a new subscription. Provide a MessageHandler to be executed when
 	// a message is published on the topic provided, or nil for the default handler
-	Subscribe(topic string, qos byte, callback MessageHandler) Token
+	Subscribe(topic string, qos byte, callback MessageHandler, boolField bool) Token
 	// SubscribeMultiple starts a new subscription for multiple topics. Provide a MessageHandler to
 	// be executed when a message is published on one of the topics provided, or nil for the
 	// default handler
@@ -676,7 +676,7 @@ func (c *client) Publish(topic string, qos byte, retained bool, payload interfac
 // as low as possible, especially when SetOrderMatters(true) (the default) is in
 // place. Blocking calls in message handlers might otherwise delay delivery to
 // other message handlers.
-func (c *client) Subscribe(topic string, qos byte, callback MessageHandler) Token {
+func (c *client) Subscribe(topic string, qos byte, callback MessageHandler, _ bool) Token {
 	token := newToken(packets.Subscribe).(*SubscribeToken)
 	DEBUG.Println(CLI, "enter Subscribe")
 	if !c.IsConnected() {
